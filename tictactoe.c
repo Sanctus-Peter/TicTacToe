@@ -15,7 +15,7 @@ char nSquare[row][col] = {
 };
 
 void board();
-bool checkWin(void);
+int checkWin(void);
 
 int main (void)
 {
@@ -45,19 +45,32 @@ int main (void)
 			nSquare[1][1] = var;
 		else if(choice == 6 && nSquare[1][2] == '6')
 			nSquare[1][2] = var;
-		else if(choice == 7 && nSquare[3][0] == '7')
-			nSquare[3][0] = var;
-		else if(choice == 8 && nSquare[3][1] == '8')
-			nSquare[3][1] = var;
-		else if(choice == 9 && nSquare[3][2] == '9')
-			nSquare[3][2] = var;
+		else if(choice == 7 && nSquare[2][0] == '7')
+			nSquare[2][0] = var;
+		else if(choice == 8 && nSquare[2][1] == '8')
+			nSquare[2][1] = var;
+		else if(choice == 9 && nSquare[2][2] == '9')
+			nSquare[2][2] = var;
 		else
 		{
-			printf("Invalid move, Player %d make a valid move", player);
+			printf("\n\nInvalid move, Player %d make a valid move", player);
 			player -= 1;
+			system("pause");
 		}
+
+		chkValid = checkWin();
+
+		player += 1;
 	}
+
+	board();
+
+	if(chkValid == win)
+		printf("  Congratulations!!! \a Player %d wini\n\n", --player);
+	else 
+		printf("  Game ended in a draw\a\n\n");
 	
+//	system("pause");
 	
 	return (0);
 }
@@ -81,9 +94,27 @@ void board(void)
 	printf("\t     |     |     \n\n");
 }
 
-bool  checkWin(void)
+int  checkWin(void)
 {
+	if(nSquare[0][0] == nSquare[0][1] && nSquare[0][1] == nSquare[0][2])
+		return win;
+	else if(nSquare[1][0] == nSquare[1][1] && nSquare[1][1] == nSquare[1][2])
+		return win;
+	else if(nSquare[2][0] == nSquare[2][1] && nSquare[2][1] == nSquare[2][2])
+		return win;
+	else if(nSquare[0][1] == nSquare[1][1] && nSquare[1][1] == nSquare[2][1])
+		return win;
+	else if(nSquare[0][0] == nSquare[1][0] && nSquare[1][0] == nSquare[2][0])
+		return win;
+	else if(nSquare[0][2] == nSquare[1][2] && nSquare[1][2] == nSquare[2][2])
+		return win;
+	else if(nSquare[0][0] == nSquare[1][1] && nSquare[1][1] == nSquare[2][2])
+		return win;
+	else if(nSquare[0][2] == nSquare[1][1] && nSquare[2][0] == nSquare[1][1])
+		return win;
+	else if(nSquare[0][0] != '1' && nSquare[0][1] != '2' && nSquare[0][2] != '3' && nSquare[1][0] != '4' && nSquare[1][1] != '5' && nSquare[1][2] != '6' && nSquare[2][0] != '7' && nSquare[2][1] != '8' && nSquare[2][2] != '9')
+		return draw;
+	else
+		return playOn;
 
 }
-
-
