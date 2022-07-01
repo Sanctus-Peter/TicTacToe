@@ -66,7 +66,7 @@ int main (void)
 	board();
 
 	if(chkValid == win)
-		printf("  Congratulations!!! \a Player %d wini\n\n", --player);
+		printf("  Congratulations!!! \a Player %d win\n\n", --player);
 	else 
 		printf("  Game ended in a draw\a\n\n");
 	
@@ -112,7 +112,10 @@ int  checkWin(void)
 		return win;
 	else if(nSquare[0][2] == nSquare[1][1] && nSquare[2][0] == nSquare[1][1])
 		return win;
-	else if(nSquare[0][0] != '1' && nSquare[0][1] != '2' && nSquare[0][2] != '3' && nSquare[1][0] != '4' && nSquare[1][1] != '5' && nSquare[1][2] != '6' && nSquare[2][0] != '7' && nSquare[2][1] != '8' && nSquare[2][2] != '9')
+	else if(nSquare[0][0] != '1' && nSquare[0][1] != '2' && nSquare[0][2] != '3' 
+			&& nSquare[1][0] != '4' && nSquare[1][1] != '5' 
+			&& nSquare[1][2] != '6' && nSquare[2][0] != '7' 
+			&& nSquare[2][1] != '8' && nSquare[2][2] != '9')
 		return draw;
 	else
 		return playOn;
